@@ -16,7 +16,7 @@ import avalonia from "../assets/avalonia.png";
 import nodejs from "../assets/Nodejs.png";
 import firebase from "../assets/Firebase.png";
 import mongodb from "../assets/MongoDB.png";
-import postgresql from "../assets/postgresSQL.png";
+import postgresql from "../assets/PostgresSQL.png";
 import dotnet from "../assets/NET.png";
 import java from "../assets/Javaa.png";
 import csharp from "../assets/Csharp.png";
