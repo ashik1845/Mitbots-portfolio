@@ -61,7 +61,7 @@ useEffect(() => {
 }, []);
 
   return (
-    <section className="tech-section">
+    <section className="tech-section bg-light">
       <h1 className="toolbox-title">MY TOOLBOX</h1>
 
       {/* Line 1: Right End to Center */}

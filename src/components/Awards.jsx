@@ -101,7 +101,7 @@ const Awards = () => {
   const visibleAwards = showAll ? awardsList : awardsList.slice(0, initialCount);
 
   return (
-    <section className="awards-section">
+    <section className="awards-section bg-light">
       <h2 className="awards-title">AWARDS & ACHIEVEMENTS</h2>
       <div className="awards-container">
         <div className="awards-left">

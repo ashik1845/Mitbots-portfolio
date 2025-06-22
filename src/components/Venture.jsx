@@ -51,7 +51,7 @@ const Venture = () => {
   return (
     <section className="venture-stack-section" ref={sectionRef}>
       <div className="stack-wrapper">
-        <section className="venture-section stack-item">
+        <section className="venture-section stack-item bg-dark">
           <div className="venture-content">
             <div className="venture-heading">
               <h1>MY VENTURE:</h1>
@@ -69,7 +69,7 @@ const Venture = () => {
           </div>
         </section>
 
-        <section className="life-section stack-item">
+        <section className="life-section stack-item bg-light">
           <div className="life-content">
             <div className="life-text">
               <h1>LIFE OUTSIDE THE DESK</h1>

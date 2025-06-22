@@ -7,7 +7,7 @@ import instagramIcon from "../assets/instagram.png";
 
 const Footer = () => {
   return (
-    <div className="footer-section">
+    <div data-cursor-bg="dark" className="footer-section ">
       <div className="footer-content">
         <div className="footer-curve-layer">
           <h1 className="footer-heading">

@@ -4,7 +4,7 @@ import "../styles/Built.css";
 
 const Built = () => {
   return (
-    <section className="built-section">
+    <section data-cursor-bg="dark" className="built-section">
       <h1 className="built-main-header">THINGS I’VE BUILT</h1>
 
 

@@ -96,7 +96,7 @@ useEffect(() => {
   { value: "question", label: "Question" },
 ];
   return (
-    <section className="reach-section">
+    <section className="reach-section bg-light">
       <div className="reach-left">
         <h1>
           LETS BUILD <br />

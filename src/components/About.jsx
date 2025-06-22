@@ -45,7 +45,7 @@ useEffect(() => {
 
 
   return (
-    <section className="cover-about-content-section" ref={sectionRef}>
+    <section className="cover-about-content-section bg-light" ref={sectionRef}>
       <div className="cover-about-content">
         <div className="cover-about-text">
           <h1 className="cover-about-header">WHAT I BELIEVE IN</h1>
