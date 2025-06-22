@@ -1,69 +1,24 @@
 // Banner.jsx
-import React, { useEffect, useRef } from "react";
+import React, { useRef, useEffect } from "react";
+import "../styles/Banner.css";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import "../styles/Banner.css";
+import bannerVideo from "../assets/banner.MP4";
+import bannerVideoMobile from "../assets/bannermob.mp4";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const TOTAL_FRAMES = 35;
-const isMobile = window.innerWidth <= 768;
-
 const Banner = () => {
-  const sectionRef = useRef(null);
-  const canvasRef = useRef(null);
   const videoRef = useRef(null);
+  const videoSectionRef = useRef(null);
 
-  // 🔁 Use Vite's import.meta.glob to load all JPGs
-  const frameModules = import.meta.glob('../assets/frames/*.jpg', { eager: true });
-  const framePaths = Object.entries(frameModules)
-    .sort(([a], [b]) => a.localeCompare(b))
-    .map(([, mod]) => mod.default);
+  const isMobile = window.innerWidth <= 768;
+  const selectedVideo = isMobile ? bannerVideoMobile : bannerVideo;
 
   useEffect(() => {
-    if (!isMobile || framePaths.length === 0) return;
-
-    const canvas = canvasRef.current;
-    const context = canvas.getContext("2d");
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    const images = framePaths.map((src) => {
-      const img = new Image();
-      img.src = src;
-      return img;
-    });
-
-    const render = (img) => {
-      context.clearRect(0, 0, canvas.width, canvas.height);
-      context.drawImage(img, 0, 0, canvas.width, canvas.height);
-    };
-
-    gsap.to({ frame: 0 }, {
-      frame: TOTAL_FRAMES - 1,
-      snap: "frame",
-      ease: "none",
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top top",
-        end: "bottom+=1000 top",
-        scrub: true,
-        pin: true,
-      },
-      onUpdate: function () {
-        const index = Math.floor(this.targets()[0].frame);
-        const img = images[index];
-        if (img?.complete) render(img);
-      }
-    });
-  }, [framePaths]);
-
-  // 🖥 Desktop video scroll animation
-  useEffect(() => {
-    if (isMobile) return;
-
     const video = videoRef.current;
-    const section = sectionRef.current;
+    const section = videoSectionRef.current;
+
     if (!video || !section) return;
 
     video.pause();
@@ -102,20 +57,16 @@ const Banner = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="banner-video-section">
-      {isMobile ? (
-        <canvas ref={canvasRef} className="image-sequence-canvas" />
-      ) : (
-        <video
-          ref={videoRef}
-          className="banner-video"
-          src="/src/assets/banner.MP4"
-          type="video/mp4"
-          muted
-          playsInline
-          preload="auto"
-        />
-      )}
+    <section ref={videoSectionRef} className="banner-video-section">
+      <video
+        ref={videoRef}
+        className="banner-video"
+        src={selectedVideo}
+        type="video/mp4"
+        muted
+        playsInline
+        preload="auto"
+      />
     </section>
   );
 };
