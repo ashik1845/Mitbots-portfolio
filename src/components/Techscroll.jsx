@@ -1,6 +1,6 @@
 import React from "react";
 import Marquee from "react-fast-marquee";
-import "../styles/TechScroll.css";
+import "../styles/Techscroll.css";
 import { useState, useEffect } from "react";
 
 
