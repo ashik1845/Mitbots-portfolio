@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&display=swap');
+
+.tech-section {
+  margin-top: 40px;
+  height: 450px;
+  background-color: #F1DABF;
+  padding: 20px 5vw;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Responsive heading */
+.toolbox-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(32px, 6vw, 60px);
+  font-weight: 900;
+  color: #18100D;
+  position: absolute;
+  top: 20px;
+  left: 5vw;
+  z-index: 2;
+  margin: 0;
+  margin-top: 50px;
+  
+}
+
+/* Shared marquee container */
+.marquee-container {
+  position: absolute;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Line 1 scroll - right to center */
+.right-half {
+  top: 50px;
+  right: 0;
+  width: 55vw;
+}
+
+/* Line 2 scroll - left to center */
+.left-half {
+  bottom: 100px;
+  left: 0;
+  width: 65vw;
+}
+
+/* Tech item style */
+.tech-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  color: #000;
+  font-size: clamp(14px, 2vw, 25px);
+  font-weight: 400;
+  margin: 0 clamp(10px, 3vw, 33px);
+}
+
+.tech-item img {
+  width: clamp(40px, 8vw, 80px);
+  height: auto;
+  margin-bottom: 10px;
+}
+
+/* Fading overlays centered */
+.fade-right-center,
+.fade-left-center {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.fade-right-center {
+  background: linear-gradient(to right, #F1DABF 0%, transparent 20%);
+}
+
+.fade-left-center {
+  background: linear-gradient(to left, #F1DABF 0%, transparent 20%);
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+  .tech-section {
+    height: auto;
+    padding: 20px 20px;
+  }
+
+  .right-half,
+  .left-half {
+    position: static;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .marquee-container {
+    position: static;
+    height: auto;
+  }
+
+  .toolbox-title {
+    position: static;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .fade-right-center,
+  .fade-left-center {
+    display: none; /* Optional: remove fade on small screens for clarity */
+  }
+}
+
+@media (max-width:1110px){
+  .toolbox-title {
+  font-size: clamp(32px, 5vw, 60px);
+}
+}

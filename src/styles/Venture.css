@@ -1,0 +1,295 @@
+.venture-stack-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.stack-wrapper {
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  overflow: hidden;
+}
+
+.stack-item {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 100px 80px;
+  box-sizing: border-box;
+  opacity: 0; /* prevent flash on load */
+}
+
+/* Venture Section */
+.venture-section {
+  
+  background-color: #69391e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+}
+
+.venture-content {
+  width: 100%;
+}
+
+.venture-heading h1 {
+  
+  font-family: "Montserrat", sans-serif;
+  font-size: 96px;
+  font-weight: 900;
+  color: #f1dabf;
+  margin: 0;
+  line-height: 1;
+}
+
+.venture-heading .mitbots {
+  margin-top: 10px;
+}
+
+.venture-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 30px;
+  width: 100%;
+}
+
+.tablet-img {
+  width: 50%;
+  height: auto;
+  max-height: 300px;
+  object-fit: contain;
+}
+
+.venture-description {
+  width: 50%;
+  font-family: "Montserrat", sans-serif;
+  font-size: 25px;
+  color: #ffffff;
+  line-height: 1.6;
+  padding-left: 40px;
+}
+
+/* Life Section */
+.life-section {
+  background-color: #f1dabf;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.life-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 60px;
+}
+
+.life-text h1 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 80px;
+  font-weight: 900;
+  color: #18100d;
+  margin: 0;
+}
+
+.life-text p {
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;
+  color: #2f2f2f;
+  margin-top: 20px;
+  line-height: 1.6;
+  max-width: 600px;
+}
+
+.life-img {
+  height: 450px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+@media (max-width: 1200px) {
+  .venture-heading h1 {
+    font-size: 72px;
+  }
+
+  .venture-description {
+    font-size: 22px;
+  }
+
+  .life-text h1 {
+    font-size: 60px;
+  }
+
+  .life-text p {
+    font-size: 16px;
+  }
+
+  .tablet-img {
+    max-height: 250px;
+  }
+
+  .life-img {
+    height: 380px;
+  }
+}
+
+@media (max-width:992px){
+   .venture-heading h1 {
+    font-size: 65px;
+  }
+
+  .venture-description {
+    font-size: 20px;
+  }
+
+  .life-text h1 {
+    font-size: 50px;
+  }
+
+  .life-text p {
+    font-size: 14px;
+  }
+
+  .tablet-img {
+    max-height: 240px;
+  }
+
+  .life-img {
+    height: 370px;
+  }
+}
+@media (max-width:850px){
+
+   .venture-description {
+    font-size: 17px;
+  }
+   .life-text h1 {
+    font-size: 37px;
+  }
+
+  .life-text p {
+    font-size: 12px;
+  }
+
+  .tablet-img {
+    max-height: 220px;
+  }
+
+  .life-img {
+    height: 340px;
+  }
+}
+
+@media (max-width: 768px) {
+  .venture-heading h1 {
+    font-size: 48px;
+  }
+
+  .life-text h1 {
+    font-size: 40px;
+  }
+
+  .venture-section,
+  .life-section {
+    padding: 80px 30px;
+  }
+
+  .stack-item {
+    padding: 80px 30px;
+  }
+
+  /* NEW: column layout for smaller screens */
+  .venture-main,
+  .life-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+  }
+
+  .tablet-img,
+  .venture-description {
+    width: 100%;
+    padding: 0;
+  }
+  .life-img{
+   height: 350px;
+   
+  }
+  .life-text p {
+    max-width: 100%;
+    
+  }
+}
+
+@media(max-width:650px){
+  .venture-heading h1 {
+    font-size: 40px;
+  }
+
+  .life-text h1 {
+    font-size: 35px;
+  }
+
+  .venture-section,
+  .life-section {
+    padding: 80px 30px;
+  }
+
+  .stack-item {
+    padding: 80px 30px;
+  }
+
+  /* NEW: column layout for smaller screens */
+  .venture-main,
+  .life-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+  }
+
+  .tablet-img,
+  .venture-description {
+    width: 100%;
+    padding: 0;
+  }
+  .life-img{
+    height: 230px;
+  }
+  .life-text p {
+    max-width: 100%;
+    
+  }
+}
+
+@media(max-width:550px){
+  .tablet-img {
+  
+  max-height: 200px;
+  
+}
+}
+
+@media (max-width:400px){
+   .venture-heading h1 {
+    font-size: 30px;
+  }
+   .tablet-img {
+  
+  max-height: 150px;
+  
+}
+.venture-description{
+  font-size: 14px;
+}
+.life-text h1 {
+    font-size: 30px;
+  }
+  .life-text p{
+    font-size: 14px;
+  }
+}

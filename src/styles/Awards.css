@@ -1,0 +1,396 @@
+.awards-section {
+  background-color: #f1dabf;
+  padding: 60px 80px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.awards-title {
+  font-size: 66px;
+  font-weight: 900;
+  color: #18100d;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.awards-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+  gap: 20px;
+}
+
+.awards-left,
+.awards-right {
+  width: 45%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.awards-left img {
+  width: 100%;
+  border-radius: 1rem;
+}
+
+/* Default right side: No scroll, show 4 items */
+.awards-right {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Add scroll behavior only when showAll is true */
+.awards-right.scroll-enabled {
+  max-height: 700px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #69391e #f1dabf;
+}
+
+.awards-right.scroll-enabled::-webkit-scrollbar {
+  width: 6px;
+}
+
+.awards-right.scroll-enabled::-webkit-scrollbar-thumb {
+  background-color: #69391e;
+  border-radius: 3px;
+}
+
+.award-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-height: 180px;
+  position: relative;
+}
+
+.award-logo {
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+}
+
+.award-text {
+  flex: 1;
+}
+
+.award-heading {
+  font-size: 25px;
+  font-weight: 500;
+  color: #18100d;
+  margin: 0 0 6px;
+}
+
+.award-desc {
+  font-size: 18px;
+  font-weight: 400;
+  color: #2f2f2f;
+  margin: 0;
+}
+
+.view-more {
+  font-size: 30px;
+  font-weight: 400;
+  color: #69391e;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: transform 0.2s ease;
+  align-self: flex-start;
+}
+
+.view-more:hover {
+  transform: translateX(5px);
+}
+
+/* Timeline */
+.timeline-line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 90px;
+}
+
+.line-segment {
+  width: 4px;
+  height: 12.85em;
+  background-color: #69391e;
+}
+
+.circle {
+  width: 16px;
+  height: 16px;
+  background-color: #69391e;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.award-main-img {
+  width: 100%;
+  border-radius: 1rem;
+  transition: opacity 0.3s ease-in-out;
+}
+
+@media(min-width:481px){
+  .award-main-img{
+    transition: transform 0.3s ease;
+  }
+  .award-main-img:hover{
+    transform: scale(1.1);
+  }
+}
+@media(max-width:1260px){
+   .award-heading {
+    font-size: 1.3rem; /* 24px */
+  }
+}
+
+/* ↓ For screen widths 1200px and below */
+@media (max-width: 1200px) {
+  .awards-title {
+    font-size: 3.55rem; /* ~60px */
+  }
+
+  .award-heading {
+    font-size: 1.3rem; /* 24px */
+  }
+
+  .award-desc {
+    font-size: 1.0625rem; /* 17px */
+  }
+
+  .view-more {
+    font-size: 1.75rem; /* 28px */
+  }
+
+  .award-logo {
+    width: 10.625rem; /* 170px */
+    height: 10.625rem;
+  }
+
+
+}
+
+/* ↓ For screen widths 1100px and below */
+@media (max-width: 1100px) {
+  .awards-title {
+    font-size: 3.3rem; /* ~56px */
+  }
+
+  .award-heading {
+    font-size: 1.2375rem; /* ~23px */
+  }
+
+  .award-desc {
+    font-size: 0.9rem; /* 16px */
+  }
+
+  .view-more {
+    font-size: 1.525rem; /* 26px */
+  }
+
+  .award-logo {
+    width: 10rem; /* 160px */
+    height: 10rem;
+  }
+}
+@media (max-width:1050px){
+  .award-heading {
+    font-size: 1.1375rem; /* ~23px */
+  }
+    .award-logo {
+    width: 8rem; /* 160px */
+    height: 8rem;
+  }
+
+}
+
+/* Medium devices (tablets, 992px and below) */
+@media (max-width: 992px) {
+.awards-left img {
+  width: 60%;
+  display: block;
+  margin: 0 auto;
+}
+  .timeline-line {
+    display: none;
+}
+
+
+  .awards-section {
+    padding: 40px 40px;
+  }
+
+  .awards-title {
+    font-size: 3rem; /* ~48px */
+    margin-bottom: 40px;
+  }
+
+  .awards-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .awards-left,
+  .awards-right {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .award-item {
+    flex-direction: row;
+    gap: 16px;
+    min-height: 160px;
+  }
+
+  .award-logo {
+    width: 9rem;
+    height: 9rem;
+  }
+
+  .award-heading {
+    font-size: 1.275rem; /* ~22px */
+  }
+
+  .award-desc {
+    font-size: 0.8rem; /* 16px */
+  }
+
+  .view-more {
+    font-size: 1.5rem;
+  }
+
+  .circle {
+    width: 0.9rem;
+    height: 0.9rem;
+  }
+
+  .line-segment {
+    height: 11em;
+  }
+}
+
+@media (max-width:875px){
+    .award-heading {
+    font-size: 1.175rem; /* ~22px */
+  }
+
+  .award-desc {
+    font-size: 0.75rem; /* 16px */
+  }
+
+}
+
+/* Small devices (phones, 768px and below) */
+@media (max-width: 768px) {
+  .awards-title {
+    font-size: 2.5rem; /* ~40px */
+  }
+
+  .award-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .award-logo {
+    width: 8rem;
+    height: 8rem;
+  }
+
+  .timeline-line {
+    display: none;
+}
+
+  .line-segment {
+    height: 9em;
+  }
+
+  .view-more {
+    font-size: 1.25rem;
+  }
+
+    .award-heading {
+    font-size: 1.075rem; /* ~22px */
+  }
+
+  .award-desc {
+    font-size: 0.75rem; /* 16px */
+  }
+
+}
+
+/* Extra small devices (phones, 480px and below) */
+@media (max-width: 480px) {
+   .award-desc {
+    display: none;
+  }
+  .awards-title {
+    font-size: 2rem; /* ~32px */
+    margin-bottom: 30px;
+  }
+
+  .awards-section {
+    padding: 30px 20px;
+  }
+
+  .award-logo {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .award-heading {
+    font-size: 1rem;
+  }
+
+  .award-desc {
+    font-size: 0.70rem;
+  }
+
+  .view-more {
+    font-size: 1.1rem;
+  }
+
+  .circle {
+    width: 0.8rem;
+    height: 0.8rem;
+  }
+
+  .line-segment {
+    height: 7em;
+  }
+  .timeline-line {
+    display: none;
+}
+
+}
+
+@media (max-width:400px){
+    .award-heading {
+    font-size: 0.9rem; /* ~22px */
+  }
+
+
+}
+
+/* Grid layout for awards right section below 992px */
+@media (max-width: 992px) {
+  .awards-right {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-height: unset;
+    overflow: hidden;
+  }
+
+  .awards-right.scroll-enabled {
+    max-height: 400px; /* Adjust height as needed */
+    overflow-y: auto;
+    padding-right: 6px; /* for scroll gutter */
+  }
+
+  .award-item {
+    min-height: 160px;
+  }
+}

@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,900;1,500&display=swap');
+
+.built-section {
+  background: linear-gradient(180deg, rgba(241, 218, 191, 1) 0%, rgba(85, 42, 23, 1) 100%);
+  padding: 80px 0px;
+}
+
+.built-main-header {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 64px;
+  color: #18100D;
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.built-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  margin-bottom: 80px;
+  flex-wrap: wrap;
+}
+
+.built-reverse {
+  flex-direction: row-reverse;
+}
+
+.built-text {
+  flex: 1;
+  max-width: 50%;
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+
+.built-left,
+.built-right {
+  text-align: left;
+}
+
+.built-image-container {
+  position: relative;
+  width: 50%;
+  height: 400px;
+  overflow: hidden;
+}
+
+.built-image1,
+.built-image2 {
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 600px auto;
+  background-position: center;
+}
+
+.built-image1 {
+  background-position: right;
+}
+
+.built-image2 {
+  background-position: left;
+}
+
+/* Specific image backgrounds */
+.mitbots-image {
+  background-image: url('../assets/mitbots.png');
+}
+
+.innocom-image {
+  background-image: url('../assets/innocom.png');
+}
+
+.quetor-image {
+  background-image: url('../assets/quetor.png');
+}
+
+/* Text Styling */
+.mitbots-title,
+.innocom-title,
+.quetor-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 40px;
+  font-weight: 900;
+}
+
+.mitbots-role,
+.innocom-role,
+.quetor-role {
+  font-family: 'Montserrat', sans-serif;
+  font-style: italic;
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+.mitbots-description,
+.innocom-description,
+.quetor-description {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  line-height: 1.6;
+}
+
+.mitbots-title { color: #592E1B; }
+.mitbots-role { color: #5E5E5E; }
+.mitbots-description { color: #232323; }
+
+.innocom-title { color: #FFFFFF; }
+.innocom-role { color: #FBFBFB; }
+.innocom-description { color: #FFFFFF; }
+
+.quetor-title { color: #F1DABF; }
+.quetor-role { color: #D8D8D8; }
+.quetor-description { color: #FFFFFF; }
+
+/* ---------- Responsive ---------- */
+
+/* Tablet (up to 1024px): Only scale fonts, keep layout intact */
+@media (max-width: 1024px) {
+  .built-main-header {
+    font-size: 48px;
+    margin-bottom: 60px;
+  }
+
+  .mitbots-title,
+  .innocom-title,
+  .quetor-title {
+    font-size: 36px;
+  }
+
+  .mitbots-role,
+  .innocom-role,
+  .quetor-role {
+    font-size: 20px;
+  }
+
+  .mitbots-description,
+  .innocom-description,
+  .quetor-description {
+    font-size: 18px;
+  }
+
+  .built-image1,
+  .built-image2 {
+    background-size: 400px auto;
+  }
+
+  .built-image-container {
+    padding-top: 30px;
+    height: 300px;
+  }
+}
+
+/* Mobile (below 768px): Switch to column layout */
+@media (max-width: 768px) {
+  .built-row,
+  .built-reverse {
+    flex-direction: column;
+  }
+
+  .built-text {
+    padding: 0 15px;
+    max-width: 100%;
+    margin-top: 20px;
+  }
+
+  .built-image-container {
+    width: 100%;
+    height: 250px;
+    background-attachment: scroll;
+  }
+
+  .built-image1,
+  .built-image2 {
+    background-size: 280px auto;
+    background-position: center;
+  }
+
+  .built-main-header {
+    font-size: 36px;
+    margin-bottom: 40px;
+  }
+
+  .mitbots-title,
+  .innocom-title,
+  .quetor-title {
+    font-size: 28px;
+    margin-bottom: 0px;
+  }
+
+  .mitbots-role,
+  .innocom-role,
+  .quetor-role {
+    font-size: 18px;
+    
+  }
+
+  .mitbots-description,
+  .innocom-description,
+  .quetor-description {
+    font-size: 16px;
+  }
+}
