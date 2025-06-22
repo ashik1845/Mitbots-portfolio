@@ -3,8 +3,8 @@ import React, { useRef, useEffect } from "react";
 import "../styles/Banner.css";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import bannerVideo from "../assets/banner.mp4";
-import bannerVideoMobile from "../assets/bannermob.mov";
+import bannerVideo from "../assets/banner.MP4";
+import bannerVideoMobile from "../assets/bannermob.MOV";
 
 gsap.registerPlugin(ScrollTrigger);
 
