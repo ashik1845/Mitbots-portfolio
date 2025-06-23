@@ -13,17 +13,13 @@ const Venture = () => {
 useEffect(() => {
   const section = sectionRef.current;
   const items = section.querySelectorAll(".stack-item");
-  const wrapper = section.querySelector(".stack-wrapper");
-wrapper.style.height = `${items.length * window.innerHeight}px`;
 
 
   items.forEach((item, index) => {
     gsap.set(item, {
-  yPercent: index === 0 ? 0 : 100,
-  autoAlpha: 1,
-  zIndex: items.length - index, // top section has higher z-index
-});
-
+      yPercent: index === 0 ? 0 : 100,
+      autoAlpha: 1,
+    });
   });
 
   const timeline = gsap.timeline({
@@ -67,7 +63,7 @@ wrapper.style.height = `${items.length * window.innerHeight}px`;
 
   return (
     <section className="venture-stack-section" ref={sectionRef}>
-      <div style={{ height: "10vh" }}></div>
+      
 
       <div className="stack-wrapper">
         <section className="venture-section stack-item bg-dark">
