@@ -175,6 +175,7 @@
   .built-image2 {
     background-size: 280px auto;
     background-position: center;
+    background-attachment:scroll;
   }
 
   .built-main-header {
