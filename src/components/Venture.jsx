@@ -22,22 +22,19 @@ const Venture = () => {
     });
   });
 
-const isMobile = window.innerWidth <= 768;
-
-const timeline = gsap.timeline({
+  // GSAP timeline for this section only
+  const timeline = gsap.timeline({
   scrollTrigger: {
     trigger: section,
-    start: "top 10%", // Better on mobile
+    start: "top 1%", // ⬅️ smoother mobile entry
     end: () => `+=${items.length * window.innerHeight * 1.2}`,
-    scrub: isMobile ? false : 0.8, // Avoid scrub on mobile
+    scrub: 1,
     pin: true,
-    pinSpacing: true,
+    pinSpacing: true, // ⬅️ important
     anticipatePin: 1,
-    pinType: isMobile ? "transform" : "fixed", // Safe pinning on iOS
   },
   defaults: { ease: "none" },
 });
-
 
 
   items.forEach((item, index) => {
