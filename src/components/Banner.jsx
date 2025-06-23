@@ -63,15 +63,15 @@ const Banner = () => {
   let drawWidth, drawHeight, offsetX = 0, offsetY = 0;
 
   if (imageAspect > canvasAspect) {
-    // Image is wider → fit to width, black bars top/bottom
+    // Image is wider → fit width, crop height
     drawWidth = canvas.width;
     drawHeight = drawWidth / imageAspect;
-    offsetY = (canvas.height - drawHeight) / 2;
+    offsetY = -(drawHeight - canvas.height) / 2;
   } else {
-    // Image is taller → fit to height, black bars left/right
-    drawHeight = canvas.height;
-    drawWidth = drawHeight * imageAspect;
-    offsetX = (canvas.width - drawWidth) / 2;
+    // Image is taller → also fit width, crop height
+    drawWidth = canvas.width;
+    drawHeight = drawWidth / imageAspect;
+    offsetY = -(drawHeight - canvas.height) / 2;
   }
 
   context.imageSmoothingEnabled = true;
