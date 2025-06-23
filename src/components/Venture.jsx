@@ -10,34 +10,36 @@ gsap.registerPlugin(ScrollTrigger);
 const Venture = () => {
   const sectionRef = useRef(null);
 
+
 useEffect(() => {
   const section = sectionRef.current;
   const items = section.querySelectorAll(".stack-item");
+  const isMobile = window.innerWidth <= 768;
 
-  // Force stacking visually with z-index
+  // Set initial positions
   items.forEach((item, index) => {
     gsap.set(item, {
       yPercent: index === 0 ? 0 : 100,
       autoAlpha: 1,
-      
     });
   });
 
-  // GSAP timeline
+  // Only create timeline with pin for desktop
   const timeline = gsap.timeline({
     scrollTrigger: {
       trigger: section,
-      start: "top top", // pin when top of section hits top of viewport
+      start: "top top",
       end: () => `+=${items.length * window.innerHeight * 1.2}`,
-      scrub: window.innerWidth <= 768 ? 0.3 : 1,
-      pin: true,
-      pinSpacing: true,
+      scrub: isMobile ? false : 1,
+      pin: !isMobile, // ✅ disable pinning on mobile
+      pinSpacing: !isMobile,
       anticipatePin: 1,
       invalidateOnRefresh: true,
     },
     defaults: { ease: "none" },
   });
 
+  // Animation for stacking
   items.forEach((item, index) => {
     timeline.to(item, {
       scale: index === 0 ? 0.95 : 0.96,
@@ -48,16 +50,16 @@ useEffect(() => {
     }
   });
 
-requestAnimationFrame(() => {
-  ScrollTrigger.refresh();
-});
-
+  requestAnimationFrame(() => {
+    ScrollTrigger.refresh();
+  });
 
   return () => {
     timeline.scrollTrigger?.kill();
     timeline.kill();
   };
 }, []);
+
 
 
 
