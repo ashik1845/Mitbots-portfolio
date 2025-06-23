@@ -18,6 +18,14 @@
   will-change: transform;
   transform: translateZ(0);
 }
+.banner-canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  image-rendering: auto; /* ensures smoothness */
+  will-change: transform, opacity;
+}
 
 .loading-overlay {
   position: absolute;

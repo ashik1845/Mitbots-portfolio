@@ -19,76 +19,87 @@ const Banner = () => {
     if (!section) return;
 
     if (isMobile) {
-      const totalFrames = 104;
-      const canvas = canvasRef.current;
-      const context = canvas.getContext("2d");
+  const totalFrames = 104;
+  const canvas = canvasRef.current;
+  const context = canvas.getContext("2d");
 
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 
-      const images = [];
-      let loadedImages = 0;
-      let currentFrame = 0;
-      let targetFrame = 0;
+  // GPU acceleration hint
+  canvas.style.willChange = "transform, opacity";
 
-      for (let i = 1; i <= totalFrames; i++) {
-        const img = new Image();
-        img.src = `/frames/frame_${String(i).padStart(4, "0")}.jpg`;
-        images.push(img);
-        img.onload = () => {
-          loadedImages++;
-          if (loadedImages === 1) {
-            render(0);
-            setLoading(false); // ✅ Hide loading after first frame is ready
-          }
-        };
+  const images = [];
+  let loadedImages = 0;
+  let currentFrame = 0;
+  let targetFrame = 0;
+  let lastRenderedFrame = -1;
+
+  for (let i = 1; i <= totalFrames; i++) {
+    const img = new Image();
+    img.src = `/frames/frame_${String(i).padStart(4, "0")}.jpg`;
+    images.push(img);
+    img.onload = () => {
+      loadedImages++;
+      if (loadedImages === 1) {
+        render(0);
+        setLoading(false);
       }
+    };
+  }
 
-      const render = (index) => {
-        const img = images[index];
-        if (!img || !img.complete) return;
+  const render = (index) => {
+    const img = images[index];
+    if (!img || !img.complete) return;
 
-        context.clearRect(0, 0, canvas.width, canvas.height);
+    if (index === lastRenderedFrame) return; // ✅ Avoid re-rendering same frame
+    lastRenderedFrame = index;
 
-        const canvasAspect = canvas.width / canvas.height;
-        const imageAspect = img.width / img.height;
+    context.clearRect(0, 0, canvas.width, canvas.height);
 
-        let drawWidth, drawHeight, offsetX = 0, offsetY = 0;
+    const canvasAspect = canvas.width / canvas.height;
+    const imageAspect = img.width / img.height;
 
-        if (imageAspect > canvasAspect) {
-          drawHeight = canvas.height;
-          drawWidth = drawHeight * imageAspect;
-          offsetX = -(drawWidth - canvas.width) / 2;
-        } else {
-          drawWidth = canvas.width;
-          drawHeight = drawWidth / imageAspect;
-          offsetY = -(drawHeight - canvas.height) / 2;
-        }
+    let drawWidth, drawHeight, offsetX = 0, offsetY = 0;
 
-        context.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
-      };
-
-      ScrollTrigger.create({
-        trigger: section,
-        start: "top top",
-        end: "bottom+=2000 top",
-        scrub: true,
-        pin: true,
-        onUpdate: (self) => {
-          targetFrame = Math.floor(self.progress * (totalFrames - 1));
-        },
-      });
-
-      const animate = () => {
-        currentFrame += (targetFrame - currentFrame) * 0.2;
-        const rounded = Math.round(currentFrame);
-        render(rounded);
-        requestAnimationFrame(animate);
-      };
-
-      animate();
-
+    if (imageAspect > canvasAspect) {
+      drawHeight = canvas.height;
+      drawWidth = drawHeight * imageAspect;
+      offsetX = -(drawWidth - canvas.width) / 2;
     } else {
+      drawWidth = canvas.width;
+      drawHeight = drawWidth / imageAspect;
+      offsetY = -(drawHeight - canvas.height) / 2;
+    }
+
+    context.imageSmoothingEnabled = true;
+    context.imageSmoothingQuality = "high";
+    context.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
+  };
+
+  ScrollTrigger.create({
+    trigger: section,
+    start: "top top",
+    end: "bottom+=2000 top",
+    scrub: true,
+    pin: true,
+    onUpdate: (self) => {
+      targetFrame = self.progress * (totalFrames - 1);
+    },
+  });
+
+  const animate = () => {
+    currentFrame += (targetFrame - currentFrame) * 0.12; // ✅ Smaller = smoother
+    const rounded = Math.round(currentFrame);
+    render(rounded);
+    requestAnimationFrame(animate);
+  };
+
+  animate();
+}
+
+
+     else {
       const video = videoRef.current;
       if (!video) return;
 
