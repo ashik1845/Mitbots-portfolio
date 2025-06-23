@@ -26,11 +26,12 @@ const Venture = () => {
   const timeline = gsap.timeline({
     scrollTrigger: {
       trigger: section,
-      start: "top top",
-      end: () => `+=${items.length * window.innerHeight * 1.2}`,
+      start: "top+=1 top", // Start 1px lower than normal
 
+      end: () => `+=${items.length * window.innerHeight * 1.2}`,
       scrub: 1,
       pin: true,
+      pinSpacing: false,
       anticipatePin: 1,
     },
     defaults: { ease: "none" },

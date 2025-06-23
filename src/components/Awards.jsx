@@ -73,17 +73,15 @@ const Awards = () => {
   const scrollRef = useRef(null);
 
 useEffect(() => {
-  const rafRefresh = () => {
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        ScrollTrigger.refresh();
-      });
+  let raf1 = requestAnimationFrame(() => {
+    let raf2 = requestAnimationFrame(() => {
+      ScrollTrigger.refresh(true); // 🔁 full refresh
     });
+  });
+
+  return () => {
+    cancelAnimationFrame(raf1);
   };
-
-  rafRefresh(); // Call on dependency change
-
-  return () => {}; // No cleanup needed here
 }, [showAll, hideViewMore, initialCount, isMobile, selectedIndex]);
 
 

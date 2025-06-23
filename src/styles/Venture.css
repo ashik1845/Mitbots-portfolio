@@ -3,6 +3,17 @@
   overflow: hidden;
   min-height: 100vh; /* ✅ ensure full screen height */
 }
+.venture-stack-section::before {
+  content: "START";
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: red;
+  color: white;
+  z-index: 9999;
+  font-size: 12px;
+  padding: 2px 4px;
+}
 
 
 .stack-wrapper {
