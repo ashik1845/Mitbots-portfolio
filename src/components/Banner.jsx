@@ -24,7 +24,9 @@ const Banner = () => {
   const context = canvas.getContext("2d");
 
   canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  canvas.height = document.documentElement.clientHeight; // OR:
+canvas.height = window.innerHeight; // fallback
+
 
   // GPU acceleration hint
   canvas.style.willChange = "transform, opacity";
