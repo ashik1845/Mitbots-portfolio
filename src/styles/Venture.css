@@ -1,9 +1,19 @@
+body {
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
+}
+
 .venture-stack-section {
   position: relative;
   overflow: hidden;
   min-height: 100vh; /* ✅ ensure full screen height */
 }
 
+.venture-stack-section,
+.stack-wrapper,
+.stack-item {
+  min-height: 100vh;
+}
 
 .stack-wrapper {
   height: 100vh;
@@ -20,6 +30,7 @@
   padding: 100px 80px;
   box-sizing: border-box;
   opacity: 0; /* prevent flash on load */
+  will-change: transform, opacity;
 }
 
 /* Venture Section */

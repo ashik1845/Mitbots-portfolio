@@ -24,18 +24,18 @@ const Venture = () => {
 
   // GSAP timeline for this section only
   const timeline = gsap.timeline({
-    scrollTrigger: {
-      trigger: section,
-      start: "top+=1 top", // Start 1px lower than normal
+  scrollTrigger: {
+    trigger: section,
+    start: "top 10%", // ⬅️ smoother mobile entry
+    end: () => `+=${items.length * window.innerHeight * 1.2}`,
+    scrub: 1,
+    pin: true,
+    pinSpacing: true, // ⬅️ important
+    anticipatePin: 1,
+  },
+  defaults: { ease: "none" },
+});
 
-      end: () => `+=${items.length * window.innerHeight * 1.2}`,
-      scrub: 1,
-      pin: true,
-      
-      anticipatePin: 1,
-    },
-    defaults: { ease: "none" },
-  });
 
   items.forEach((item, index) => {
     timeline.to(item, {
