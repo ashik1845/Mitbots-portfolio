@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Banner = () => {
   const videoRef = useRef(null);
-  const imgRef = useRef(null);
+  const canvasRef = useRef(null);
   const sectionRef = useRef(null);
 
   const isMobile = window.innerWidth <= 768;
@@ -19,27 +19,42 @@ const Banner = () => {
 
     if (isMobile) {
       const totalFrames = 104;
+      const canvas = canvasRef.current;
+      const context = canvas.getContext("2d");
 
-      const scrollTrigger = ScrollTrigger.create({
+      canvas.width = 640;
+      canvas.height = 1146;
+
+      const images = [];
+      let loadedImages = 0;
+
+      for (let i = 1; i <= totalFrames; i++) {
+        const img = new Image();
+        img.src = `/frames/frame_${String(i).padStart(4, "0")}.jpg`;
+        images.push(img);
+        img.onload = () => {
+          loadedImages++;
+          if (loadedImages === 1) {
+            context.drawImage(img, 0, 0, canvas.width, canvas.height);
+          }
+        };
+      }
+
+      ScrollTrigger.create({
         trigger: section,
         start: "top top",
         end: "bottom+=2000 top",
         scrub: true,
         pin: true,
         onUpdate: (self) => {
-          // ✅ Define `frame` properly here
-          const frame = Math.floor(self.progress * (totalFrames - 1)) + 1;
-          const frameSrc = `/frames/frame_${String(frame).padStart(4, "0")}.jpg`;
-
-          if (imgRef.current && imgRef.current.src !== frameSrc) {
-            imgRef.current.src = frameSrc;
+          const index = Math.floor(self.progress * (totalFrames - 1));
+          const frameImage = images[index];
+          if (frameImage && frameImage.complete) {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.drawImage(frameImage, 0, 0, canvas.width, canvas.height);
           }
         },
       });
-
-      return () => {
-        scrollTrigger.kill();
-      };
     } else {
       const video = videoRef.current;
       if (!video) return;
@@ -78,17 +93,12 @@ const Banner = () => {
         scrollTrigger.kill();
       };
     }
-  }, [isMobile]);
+  }, []);
 
   return (
     <section ref={sectionRef} className="banner-video-section">
       {isMobile ? (
-        <img
-          ref={imgRef}
-          className="banner-video"
-          src="/frames/frame_0001.jpg"
-          alt="Banner frame sequence"
-        />
+        <canvas ref={canvasRef} className="banner-video" />
       ) : (
         <video
           ref={videoRef}
