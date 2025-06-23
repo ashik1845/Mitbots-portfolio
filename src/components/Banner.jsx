@@ -19,13 +19,26 @@ const Banner = () => {
 
     if (isMobile) {
       const totalFrames = 104;
+      const images = [];
       const canvas = canvasRef.current;
       const context = canvas.getContext("2d");
 
-      canvas.width = 640;
-      canvas.height = 1146;
+      // Original image frame size
+      const frameWidth = 640;
+      const frameHeight = 1146;
+      const aspectRatio = frameWidth / frameHeight;
 
-      const images = [];
+      const resizeCanvas = () => {
+        const screenWidth = window.innerWidth;
+        const canvasWidth = screenWidth;
+        const canvasHeight = Math.round(canvasWidth / aspectRatio);
+        canvas.width = canvasWidth;
+        canvas.height = canvasHeight;
+      };
+
+      resizeCanvas(); // Initial size
+      window.addEventListener("resize", resizeCanvas); // Resize on screen change
+
       let loadedImages = 0;
 
       for (let i = 1; i <= totalFrames; i++) {
@@ -55,6 +68,10 @@ const Banner = () => {
           }
         },
       });
+
+      return () => {
+        window.removeEventListener("resize", resizeCanvas);
+      };
     } else {
       const video = videoRef.current;
       if (!video) return;
