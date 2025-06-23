@@ -6,19 +6,15 @@ const CustomCursor = () => {
   const mouse = useRef({ x: 0, y: 0 });
   const pos = useRef({ x: 0, y: 0 });
 
-  // Smooth animation loop
   const animate = () => {
     pos.current.x += (mouse.current.x - pos.current.x) * 0.9;
     pos.current.y += (mouse.current.y - pos.current.y) * 0.9;
-
     if (cursorRef.current) {
       cursorRef.current.style.transform = `translate3d(${pos.current.x}px, ${pos.current.y}px, 0)`;
     }
-
     requestRef.current = requestAnimationFrame(animate);
   };
 
-  // Convert rgb to hex
   const rgbToHex = (rgb) => {
     const result = /^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/.exec(rgb);
     if (!result) return "";
@@ -35,10 +31,8 @@ const CustomCursor = () => {
     );
   };
 
-  // Find bg color or manual override
   const getEffectiveColor = (el) => {
     while (el) {
-      // Manual override
       const manual = el.getAttribute?.("data-cursor-bg");
       if (manual === "light") return "#F1DABF";
       if (manual === "dark") return "#69391E";
@@ -47,16 +41,17 @@ const CustomCursor = () => {
       if (bg && bg !== "rgba(0, 0, 0, 0)" && bg !== "transparent") {
         return rgbToHex(bg);
       }
-
       el = el.parentElement;
     }
 
-    // Fallback to body
     const fallback = getComputedStyle(document.body).backgroundColor;
     return rgbToHex(fallback);
   };
 
   useEffect(() => {
+    // ❌ Skip cursor below 480px
+    if (window.innerWidth <= 480) return;
+
     const cursor = cursorRef.current;
 
     const onMouseMove = (e) => {
@@ -73,7 +68,7 @@ const CustomCursor = () => {
       } else if (colorHex === "#69391E") {
         cursor.style.backgroundColor = "#F1DABF";
       } else {
-        cursor.style.backgroundColor = "#69391E"; // fallback
+        cursor.style.backgroundColor = "#69391E";
       }
     };
 
@@ -85,6 +80,9 @@ const CustomCursor = () => {
       cancelAnimationFrame(requestRef.current);
     };
   }, []);
+
+  // Only render on screens wider than 480px
+  if (window.innerWidth <= 480) return null;
 
   return (
     <div

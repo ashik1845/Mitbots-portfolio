@@ -14,6 +14,7 @@ const Venture = () => {
   const section = sectionRef.current;
   const items = section.querySelectorAll(".stack-item");
 
+  // Initial positions
   items.forEach((item, index) => {
     gsap.set(item, {
       yPercent: index === 0 ? 0 : 100,
@@ -21,11 +22,12 @@ const Venture = () => {
     });
   });
 
+  // GSAP timeline for this section only
   const timeline = gsap.timeline({
     scrollTrigger: {
       trigger: section,
       start: "top top",
-      end: () => `+=${items.length * window.innerHeight * 1.5}`, // ← slower stack
+      end: `+=${items.length * 1000}`, // Use fixed value to avoid mobile jump
       scrub: 1,
       pin: true,
       anticipatePin: 1,
@@ -35,17 +37,20 @@ const Venture = () => {
 
   items.forEach((item, index) => {
     timeline.to(item, {
-       scale: index === 0 ? 0.95 : 0.96,
+      scale: index === 0 ? 0.95 : 0.96,
       borderRadius: "20px",
     });
-
     if (index < items.length - 1) {
       timeline.to(items[index + 1], { yPercent: 7 }, "<");
     }
   });
 
-  return () => ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+  return () => {
+    timeline.scrollTrigger?.kill(); // ONLY remove this trigger
+    timeline.kill();               // Clean up timeline too
+  };
 }, []);
+
 
 
   return (
@@ -68,7 +73,6 @@ const Venture = () => {
             </div>
           </div>
         </section>
-
         <section className="life-section stack-item bg-light">
           <div className="life-content">
             <div className="life-text">

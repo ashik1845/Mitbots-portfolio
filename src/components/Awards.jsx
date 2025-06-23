@@ -1,5 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import "../styles/Awards.css";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
 
 import logo from "../assets/achievement-logo.png";
 
@@ -99,7 +104,6 @@ const Awards = () => {
   }, [hideViewMore]);
 
   const visibleAwards = showAll ? awardsList : awardsList.slice(0, initialCount);
-
   return (
     <section className="awards-section bg-light">
       <h2 className="awards-title">AWARDS & ACHIEVEMENTS</h2>
@@ -140,9 +144,16 @@ onClick={() => isMobile && setSelectedIndex(index)}
           ))}
 
           {!showAll && !hideViewMore && awardsList.length > initialCount && (
-            <p className="view-more" onClick={() => setShowAll(true)}>
-              View More →
-            </p>
+            <p
+  className="view-more"
+  onClick={() => {
+    setShowAll(true);
+    setTimeout(() => ScrollTrigger.refresh(), 300); // slight delay to wait for DOM reflow
+  }}
+>
+  View More →
+</p>
+
           )}
         </div>
       </div>
