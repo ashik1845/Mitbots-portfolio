@@ -24,7 +24,7 @@ useEffect(() => {
   const timeline = gsap.timeline({
     scrollTrigger: {
       trigger: section,
-      start: window.innerWidth < 480 ? "top 10%" : "top top",
+      start: window.innerWidth < 480 ? "center center" : "center center",
       end: () => `+=${items.length * window.innerHeight * 1.2}`,
       scrub: 1,
       pin: true,
