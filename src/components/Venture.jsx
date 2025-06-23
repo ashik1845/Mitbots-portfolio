@@ -26,7 +26,7 @@ const Venture = () => {
   const timeline = gsap.timeline({
   scrollTrigger: {
     trigger: section,
-    start: "top 10%", // ⬅️ smoother mobile entry
+    start: "top 1%", // ⬅️ smoother mobile entry
     end: () => `+=${items.length * window.innerHeight * 1.2}`,
     scrub: 1,
     pin: true,
