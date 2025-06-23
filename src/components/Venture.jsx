@@ -10,64 +10,54 @@ gsap.registerPlugin(ScrollTrigger);
 const Venture = () => {
   const sectionRef = useRef(null);
 
+  useEffect(() => {
+    if (window.innerWidth <= 768) return; // 🔒 Skip GSAP on mobile
 
-useEffect(() => {
-  const section = sectionRef.current;
-  const items = section.querySelectorAll(".stack-item");
-  const isMobile = window.innerWidth <= 768;
+    const section = sectionRef.current;
+    const items = section.querySelectorAll(".stack-item");
 
-  // Set initial positions
-  items.forEach((item, index) => {
-    gsap.set(item, {
-      yPercent: index === 0 ? 0 : 100,
-      autoAlpha: 1,
+    // Initial stack setup
+    items.forEach((item, index) => {
+      gsap.set(item, {
+        yPercent: index === 0 ? 0 : 100,
+        autoAlpha: 1,
+      });
     });
-  });
 
-  // Only create timeline with pin for desktop
-  const timeline = gsap.timeline({
-    scrollTrigger: {
-      trigger: section,
-      start: "top top",
-      end: () => `+=${items.length * window.innerHeight * 1.2}`,
-      scrub: isMobile ? false : 1,
-      pin: !isMobile, // ✅ disable pinning on mobile
-      pinSpacing: !isMobile,
-      anticipatePin: 1,
-      invalidateOnRefresh: true,
-    },
-    defaults: { ease: "none" },
-  });
-
-  // Animation for stacking
-  items.forEach((item, index) => {
-    timeline.to(item, {
-      scale: index === 0 ? 0.95 : 0.96,
-      borderRadius: "20px",
+    const timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "top top",
+        end: () => `+=${items.length * window.innerHeight * 1.2}`,
+        scrub: 1,
+        pin: true,
+        pinSpacing: true,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+      },
+      defaults: { ease: "none" },
     });
-    if (index < items.length - 1) {
-      timeline.to(items[index + 1], { yPercent: 7 }, "<");
-    }
-  });
 
-  requestAnimationFrame(() => {
-    ScrollTrigger.refresh();
-  });
+    items.forEach((item, index) => {
+      timeline.to(item, {
+        scale: index === 0 ? 0.95 : 0.96,
+        borderRadius: "20px",
+      });
+      if (index < items.length - 1) {
+        timeline.to(items[index + 1], { yPercent: 7 }, "<");
+      }
+    });
 
-  return () => {
-    timeline.scrollTrigger?.kill();
-    timeline.kill();
-  };
-}, []);
+    requestAnimationFrame(() => ScrollTrigger.refresh());
 
-
-
-
+    return () => {
+      timeline.scrollTrigger?.kill();
+      timeline.kill();
+    };
+  }, []);
 
   return (
     <section className="venture-stack-section" ref={sectionRef}>
-      
-
       <div className="stack-wrapper">
         <section className="venture-section stack-item bg-dark">
           <div className="venture-content">
@@ -86,6 +76,7 @@ useEffect(() => {
             </div>
           </div>
         </section>
+
         <section className="life-section stack-item bg-light">
           <div className="life-content">
             <div className="life-text">

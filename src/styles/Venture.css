@@ -308,3 +308,15 @@
     font-size: 14px;
   }
 }
+@media (max-width: 768px) {
+  .stack-wrapper {
+    position: static;
+    height: auto;
+  }
+
+  .stack-item {
+    position: static !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
