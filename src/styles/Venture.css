@@ -8,11 +8,6 @@ body {
   overflow: hidden;
   min-height: 100vh; /* ✅ ensure full screen height */
 }
-.venture-stack-section::before {
-  content: "";
-  display: block;
-  height: 10vh;
-}
 
 .venture-stack-section,
 .stack-wrapper,
