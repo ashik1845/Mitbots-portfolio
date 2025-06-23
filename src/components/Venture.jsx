@@ -29,6 +29,7 @@ const Venture = () => {
     start: "top 1%", // ⬅️ smoother mobile entry
     end: () => `+=${items.length * window.innerHeight * 1.2}`,
     scrub: 1,
+    pinType: "transform", 
     pin: true,
     pinSpacing: true, // ⬅️ important
     anticipatePin: 1,
