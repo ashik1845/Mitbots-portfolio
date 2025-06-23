@@ -27,7 +27,8 @@ const Venture = () => {
     scrollTrigger: {
       trigger: section,
       start: "top top",
-      end: `+=${items.length * 1000}`, // Use fixed value to avoid mobile jump
+      end: () => `+=${items.length * window.innerHeight * 1.2}`,
+
       scrub: 1,
       pin: true,
       anticipatePin: 1,

@@ -1,14 +1,16 @@
 .venture-stack-section {
   position: relative;
   overflow: hidden;
+  min-height: 100vh; /* ✅ ensure full screen height */
 }
+
 
 .stack-wrapper {
   height: 100vh;
-  position: sticky;
-  top: 0;
+  position: relative; /* ✅ let GSAP handle pinning */
   overflow: hidden;
 }
+
 
 .stack-item {
   position: absolute;
