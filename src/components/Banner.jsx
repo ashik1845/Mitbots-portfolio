@@ -24,7 +24,7 @@ const Banner = () => {
   const context = canvas.getContext("2d");
 
   canvas.width = window.innerWidth;
-canvas.height = section.getBoundingClientRect().height;
+  canvas.height = document.documentElement.clientHeight; // OR:
 
 
 
@@ -68,12 +68,14 @@ canvas.height = section.getBoundingClientRect().height;
     // Image is wider → fit width, crop height
     drawWidth = canvas.width;
     drawHeight = drawWidth / imageAspect;
-    offsetY = -(drawHeight - canvas.height) / 2;
+    offsetY = 0;
+
   } else {
     // Image is taller → also fit width, crop height
     drawWidth = canvas.width;
     drawHeight = drawWidth / imageAspect;
-    offsetY = -(drawHeight - canvas.height) / 2;
+    offsetY = 0;
+
   }
 
   context.imageSmoothingEnabled = true;
