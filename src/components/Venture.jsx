@@ -48,9 +48,10 @@ useEffect(() => {
     }
   });
 
-  setTimeout(() => {
-    ScrollTrigger.refresh();
-  }, 200);
+requestAnimationFrame(() => {
+  ScrollTrigger.refresh();
+});
+
 
   return () => {
     timeline.scrollTrigger?.kill();
