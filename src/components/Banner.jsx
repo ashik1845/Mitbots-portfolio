@@ -49,33 +49,36 @@ const Banner = () => {
   }
 
   const render = (index) => {
-    const img = images[index];
-    if (!img || !img.complete) return;
+  const img = images[index];
+  if (!img || !img.complete) return;
 
-    if (index === lastRenderedFrame) return; // ✅ Avoid re-rendering same frame
-    lastRenderedFrame = index;
+  if (index === lastRenderedFrame) return;
+  lastRenderedFrame = index;
 
-    context.clearRect(0, 0, canvas.width, canvas.height);
+  context.clearRect(0, 0, canvas.width, canvas.height);
 
-    const canvasAspect = canvas.width / canvas.height;
-    const imageAspect = img.width / img.height;
+  const canvasAspect = canvas.width / canvas.height;
+  const imageAspect = img.width / img.height;
 
-    let drawWidth, drawHeight, offsetX = 0, offsetY = 0;
+  let drawWidth, drawHeight, offsetX = 0, offsetY = 0;
 
-    if (imageAspect > canvasAspect) {
-      drawHeight = canvas.height;
-      drawWidth = drawHeight * imageAspect;
-      offsetX = -(drawWidth - canvas.width) / 2;
-    } else {
-      drawWidth = canvas.width;
-      drawHeight = drawWidth / imageAspect;
-      offsetY = -(drawHeight - canvas.height) / 2;
-    }
+  if (imageAspect > canvasAspect) {
+    // Image is wider → fit to width, black bars top/bottom
+    drawWidth = canvas.width;
+    drawHeight = drawWidth / imageAspect;
+    offsetY = (canvas.height - drawHeight) / 2;
+  } else {
+    // Image is taller → fit to height, black bars left/right
+    drawHeight = canvas.height;
+    drawWidth = drawHeight * imageAspect;
+    offsetX = (canvas.width - drawWidth) / 2;
+  }
 
-    context.imageSmoothingEnabled = true;
-    context.imageSmoothingQuality = "high";
-    context.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
-  };
+  context.imageSmoothingEnabled = true;
+  context.imageSmoothingQuality = "high";
+  context.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
+};
+
 
   ScrollTrigger.create({
     trigger: section,
