@@ -26,10 +26,10 @@ const Venture = () => {
   const timeline = gsap.timeline({
   scrollTrigger: {
     trigger: section,
-    start: "top 1%", // ⬅️ smoother mobile entry
+    start: "top top", // ⬅️ smoother mobile entry
     end: () => `+=${items.length * window.innerHeight * 1.2}`,
-    scrub: 1,
-    pinType: "transform", 
+    scrub: 0.3,
+    
     pin: true,
     pinSpacing: true, // ⬅️ important
     anticipatePin: 1,
