@@ -13,6 +13,7 @@ const Venture = () => {
 useEffect(() => {
   const section = sectionRef.current;
   const items = section.querySelectorAll(".stack-item");
+  
 
   items.forEach((item, index) => {
     gsap.set(item, {
