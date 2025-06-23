@@ -19,42 +19,64 @@ const Banner = () => {
 
     if (isMobile) {
       const totalFrames = 104;
-      const canvas = canvasRef.current;
-      const context = canvas.getContext("2d");
-
-      canvas.width = 640;
-      canvas.height = 1146;
-
       const images = [];
-      let loadedImages = 0;
+      let loadedCount = 0;
+      let lastRenderedFrame = -1;
+
+      // Use device pixel ratio for high-res rendering
+      const dpr = window.devicePixelRatio || 1;
+      const canvas = canvasRef.current;
+      const ctx = canvas.getContext("2d");
+
+      const baseWidth = 640;
+      const baseHeight = 1146;
+
+      canvas.width = baseWidth * dpr;
+      canvas.height = baseHeight * dpr;
+      canvas.style.width = `${baseWidth}px`;
+      canvas.style.height = `${baseHeight}px`;
+      ctx.scale(dpr, dpr);
 
       for (let i = 1; i <= totalFrames; i++) {
         const img = new Image();
         img.src = `/frames/frame_${String(i).padStart(4, "0")}.jpg`;
         images.push(img);
         img.onload = () => {
-          loadedImages++;
-          if (loadedImages === 1) {
-            context.drawImage(img, 0, 0, canvas.width, canvas.height);
+          loadedCount++;
+          if (loadedCount === 1) {
+            ctx.drawImage(img, 0, 0, baseWidth, baseHeight);
           }
         };
       }
 
-      ScrollTrigger.create({
+      let scrollProgress = 0;
+
+      const render = () => {
+        const frameIndex = Math.floor(scrollProgress * (totalFrames - 1));
+        if (frameIndex !== lastRenderedFrame && images[frameIndex]?.complete) {
+          lastRenderedFrame = frameIndex;
+          ctx.clearRect(0, 0, baseWidth, baseHeight);
+          ctx.drawImage(images[frameIndex], 0, 0, baseWidth, baseHeight);
+        }
+        requestAnimationFrame(render);
+      };
+
+      requestAnimationFrame(render);
+
+      const scrollTrigger = ScrollTrigger.create({
         trigger: section,
         start: "top top",
         end: "bottom+=2000 top",
         scrub: true,
         pin: true,
         onUpdate: (self) => {
-          const index = Math.floor(self.progress * (totalFrames - 1));
-          const frameImage = images[index];
-          if (frameImage && frameImage.complete) {
-            context.clearRect(0, 0, canvas.width, canvas.height);
-            context.drawImage(frameImage, 0, 0, canvas.width, canvas.height);
-          }
+          scrollProgress = self.progress;
         },
       });
+
+      return () => {
+        scrollTrigger.kill();
+      };
     } else {
       const video = videoRef.current;
       if (!video) return;
