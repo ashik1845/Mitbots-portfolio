@@ -31,7 +31,7 @@ const Venture = () => {
       end: () => `+=${items.length * window.innerHeight * 1.2}`,
       scrub: 1,
       pin: true,
-      pinSpacing: false,
+      
       anticipatePin: 1,
     },
     defaults: { ease: "none" },
