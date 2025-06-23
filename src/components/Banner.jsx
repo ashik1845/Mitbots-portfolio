@@ -41,32 +41,31 @@ const Banner = () => {
       }
 
       const render = (index) => {
-        const img = images[index];
-        if (img && img.complete) {
-          context.clearRect(0, 0, canvas.width, canvas.height);
+  const img = images[index];
+  if (img && img.complete) {
+    context.clearRect(0, 0, canvas.width, canvas.height);
 
-          const canvasAspect = canvas.width / canvas.height;
-          const imageAspect = img.width / img.height;
+    const canvasAspect = canvas.width / canvas.height;
+    const imageAspect = img.width / img.height;
 
-          let drawWidth, drawHeight, offsetX, offsetY;
+    let drawWidth, drawHeight, offsetX = 0, offsetY = 0;
 
-          if (imageAspect > canvasAspect) {
-            // Image is wider than canvas
-            drawWidth = canvas.width;
-            drawHeight = drawWidth / imageAspect;
-            offsetX = 0;
-            offsetY = (canvas.height - drawHeight) / 2;
-          } else {
-            // Image is taller than canvas
-            drawHeight = canvas.height;
-            drawWidth = drawHeight * imageAspect;
-            offsetX = (canvas.width - drawWidth) / 2;
-            offsetY = 0;
-          }
+    if (imageAspect > canvasAspect) {
+      // Image is wider → crop sides
+      drawHeight = canvas.height;
+      drawWidth = drawHeight * imageAspect;
+      offsetX = -(drawWidth - canvas.width) / 2;
+    } else {
+      // Image is taller → crop top/bottom
+      drawWidth = canvas.width;
+      drawHeight = drawWidth / imageAspect;
+      offsetY = -(drawHeight - canvas.height) / 2;
+    }
 
-          context.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
-        }
-      };
+    context.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
+  }
+};
+
 
       ScrollTrigger.create({
         trigger: section,
