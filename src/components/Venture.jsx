@@ -10,11 +10,10 @@ gsap.registerPlugin(ScrollTrigger);
 const Venture = () => {
   const sectionRef = useRef(null);
 
- useEffect(() => {
+useEffect(() => {
   const section = sectionRef.current;
   const items = section.querySelectorAll(".stack-item");
 
-  // Initial positions
   items.forEach((item, index) => {
     gsap.set(item, {
       yPercent: index === 0 ? 0 : 100,
@@ -22,22 +21,19 @@ const Venture = () => {
     });
   });
 
-  // GSAP timeline for this section only
   const timeline = gsap.timeline({
-  scrollTrigger: {
-    trigger: section,
-   start: window.innerWidth < 480 ? "top 10%" : "top top",
-// ⬅️ smoother mobile entry
-    end: () => `+=${items.length * window.innerHeight * 1.2}`,
-    scrub: 1,
-    
-    pin: true,
-    pinSpacing: true, // ⬅️ important
-    anticipatePin: 1,
-  },
-  defaults: { ease: "none" },
-});
-
+    scrollTrigger: {
+      trigger: section,
+      start: window.innerWidth < 480 ? "top 10%" : "top top",
+      end: () => `+=${items.length * window.innerHeight * 1.2}`,
+      scrub: 1,
+      pin: true,
+      pinSpacing: true,
+      anticipatePin: 1,
+      invalidateOnRefresh: true, // important for iOS and dynamic content
+    },
+    defaults: { ease: "none" },
+  });
 
   items.forEach((item, index) => {
     timeline.to(item, {
@@ -49,11 +45,17 @@ const Venture = () => {
     }
   });
 
+  // 🔁 Important: refresh after timeout for iOS layout to stabilize
+  setTimeout(() => {
+    ScrollTrigger.refresh();
+  }, 250); // Adjust if needed
+
   return () => {
-    timeline.scrollTrigger?.kill(); // ONLY remove this trigger
-    timeline.kill();               // Clean up timeline too
+    timeline.scrollTrigger?.kill();
+    timeline.kill();
   };
 }, []);
+
 
 
 
