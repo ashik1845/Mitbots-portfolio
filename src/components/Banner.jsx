@@ -55,8 +55,8 @@ const Banner = () => {
         const frameIndex = Math.floor(scrollProgress * (totalFrames - 1));
         if (frameIndex !== lastRenderedFrame && images[frameIndex]?.complete) {
           lastRenderedFrame = frameIndex;
-          ctx.clearRect(0, 0, baseWidth, baseHeight);
-          ctx.drawImage(images[frameIndex], 0, 0, baseWidth, baseHeight);
+          drawImageCover(ctx, images[frameIndex], baseWidth, baseHeight);
+
         }
         requestAnimationFrame(render);
       };
