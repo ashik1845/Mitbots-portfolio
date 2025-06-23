@@ -87,7 +87,7 @@ const Banner = () => {
   ScrollTrigger.create({
     trigger: section,
     start: "top top",
-    end: "bottom+=1000 top",
+    end: "bottom+=500 top",
     scrub: true,
     pin: true,
     onUpdate: (self) => {
