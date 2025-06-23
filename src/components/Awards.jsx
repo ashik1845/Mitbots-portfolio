@@ -72,12 +72,18 @@ const Awards = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const scrollRef = useRef(null);
 
-  useEffect(() => {
-  const refresh = setTimeout(() => {
-    ScrollTrigger.refresh();
-  }, 100); // Allow time for layout reflow/render
+useEffect(() => {
+  const rafRefresh = () => {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        ScrollTrigger.refresh();
+      });
+    });
+  };
 
-  return () => clearTimeout(refresh);
+  rafRefresh(); // Call on dependency change
+
+  return () => {}; // No cleanup needed here
 }, [showAll, hideViewMore, initialCount, isMobile, selectedIndex]);
 
 
