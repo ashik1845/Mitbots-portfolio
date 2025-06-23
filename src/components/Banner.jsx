@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import "../styles/Banner.css";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -10,7 +10,6 @@ const Banner = () => {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const sectionRef = useRef(null);
-
   const isMobile = window.innerWidth <= 768;
 
   useEffect(() => {
@@ -19,26 +18,14 @@ const Banner = () => {
 
     if (isMobile) {
       const totalFrames = 104;
-      const images = [];
       const canvas = canvasRef.current;
       const context = canvas.getContext("2d");
 
-      // Original image frame size
-      const frameWidth = 640;
-      const frameHeight = 1146;
-      const aspectRatio = frameWidth / frameHeight;
+      // Match canvas to screen size
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
 
-      const resizeCanvas = () => {
-        const screenWidth = window.innerWidth;
-        const canvasWidth = screenWidth;
-        const canvasHeight = Math.round(canvasWidth / aspectRatio);
-        canvas.width = canvasWidth;
-        canvas.height = canvasHeight;
-      };
-
-      resizeCanvas(); // Initial size
-      window.addEventListener("resize", resizeCanvas); // Resize on screen change
-
+      const images = [];
       let loadedImages = 0;
 
       for (let i = 1; i <= totalFrames; i++) {
@@ -48,10 +35,38 @@ const Banner = () => {
         img.onload = () => {
           loadedImages++;
           if (loadedImages === 1) {
-            context.drawImage(img, 0, 0, canvas.width, canvas.height);
+            render(0); // render first frame
           }
         };
       }
+
+      const render = (index) => {
+        const img = images[index];
+        if (img && img.complete) {
+          context.clearRect(0, 0, canvas.width, canvas.height);
+
+          const canvasAspect = canvas.width / canvas.height;
+          const imageAspect = img.width / img.height;
+
+          let drawWidth, drawHeight, offsetX, offsetY;
+
+          if (imageAspect > canvasAspect) {
+            // Image is wider than canvas
+            drawWidth = canvas.width;
+            drawHeight = drawWidth / imageAspect;
+            offsetX = 0;
+            offsetY = (canvas.height - drawHeight) / 2;
+          } else {
+            // Image is taller than canvas
+            drawHeight = canvas.height;
+            drawWidth = drawHeight * imageAspect;
+            offsetX = (canvas.width - drawWidth) / 2;
+            offsetY = 0;
+          }
+
+          context.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
+        }
+      };
 
       ScrollTrigger.create({
         trigger: section,
@@ -61,17 +76,9 @@ const Banner = () => {
         pin: true,
         onUpdate: (self) => {
           const index = Math.floor(self.progress * (totalFrames - 1));
-          const frameImage = images[index];
-          if (frameImage && frameImage.complete) {
-            context.clearRect(0, 0, canvas.width, canvas.height);
-            context.drawImage(frameImage, 0, 0, canvas.width, canvas.height);
-          }
+          render(index);
         },
       });
-
-      return () => {
-        window.removeEventListener("resize", resizeCanvas);
-      };
     } else {
       const video = videoRef.current;
       if (!video) return;
@@ -115,7 +122,7 @@ const Banner = () => {
   return (
     <section ref={sectionRef} className="banner-video-section">
       {isMobile ? (
-        <canvas ref={canvasRef} className="banner-video" />
+        <canvas ref={canvasRef} className="banner-canvas" />
       ) : (
         <video
           ref={videoRef}
