@@ -73,6 +73,15 @@ const Awards = () => {
   const scrollRef = useRef(null);
 
   useEffect(() => {
+  const refresh = setTimeout(() => {
+    ScrollTrigger.refresh();
+  }, 100); // Allow time for layout reflow/render
+
+  return () => clearTimeout(refresh);
+}, [showAll, hideViewMore, initialCount, isMobile, selectedIndex]);
+
+
+  useEffect(() => {
     const updateInitialCount = () => {
       setInitialCount(window.innerWidth < 992 ? 4 : 3);
     };
