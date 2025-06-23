@@ -122,11 +122,20 @@ useEffect(() => {
       <h2 className="awards-title">AWARDS & ACHIEVEMENTS</h2>
       <div className="awards-container">
         <div className="awards-left">
-          <img
+         <img
   src={awardImages[selectedIndex]}
   alt="Awards"
   className="award-main-img"
+  onLoad={() => {
+    // Refresh only after image loads completely
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        ScrollTrigger.refresh(true);
+      });
+    });
+  }}
 />
+
 
         </div>
 
