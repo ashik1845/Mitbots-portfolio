@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../styles/Banner.css";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -11,6 +11,8 @@ const Banner = () => {
   const canvasRef = useRef(null);
   const sectionRef = useRef(null);
   const isMobile = window.innerWidth <= 768;
+
+  const [loading, setLoading] = useState(isMobile); // ✅ true only for mobile
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -29,14 +31,16 @@ const Banner = () => {
       let currentFrame = 0;
       let targetFrame = 0;
 
-      // Preload images
       for (let i = 1; i <= totalFrames; i++) {
         const img = new Image();
         img.src = `/frames/frame_${String(i).padStart(4, "0")}.jpg`;
         images.push(img);
         img.onload = () => {
           loadedImages++;
-          if (loadedImages === 1) render(0); // Render first loaded frame
+          if (loadedImages === 1) {
+            render(0);
+            setLoading(false); // ✅ Hide loading after first frame is ready
+          }
         };
       }
 
@@ -64,7 +68,6 @@ const Banner = () => {
         context.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
       };
 
-      // ScrollTrigger setup
       ScrollTrigger.create({
         trigger: section,
         start: "top top",
@@ -76,7 +79,6 @@ const Banner = () => {
         },
       });
 
-      // Eased animation loop
       const animate = () => {
         currentFrame += (targetFrame - currentFrame) * 0.2;
         const rounded = Math.round(currentFrame);
@@ -84,7 +86,7 @@ const Banner = () => {
         requestAnimationFrame(animate);
       };
 
-      animate(); // start animation loop
+      animate();
 
     } else {
       const video = videoRef.current;
@@ -128,6 +130,12 @@ const Banner = () => {
 
   return (
     <section ref={sectionRef} className="banner-video-section">
+      {loading && (
+        <div className="loading-overlay">
+          <div className="spinner" />
+          <p>Loading...</p>
+        </div>
+      )}
       {isMobile ? (
         <canvas ref={canvasRef} className="banner-canvas" />
       ) : (
