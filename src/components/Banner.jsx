@@ -64,11 +64,11 @@ canvas.height = window.innerHeight; // fallback
 
   let drawWidth, drawHeight, offsetX = 0, offsetY = 0;
 
-  if (imageAspect > canvasAspect) {
-    // Image is wider → fit width, crop height
-    drawWidth = canvas.width;
-    drawHeight = drawWidth / imageAspect;
-    offsetY = -(drawHeight - canvas.height) / 2;
+if (imageAspect > canvasAspect) {
+      // Image is wider → crop sides
+      drawHeight = canvas.height;
+      drawWidth = drawHeight * imageAspect;
+      offsetX = -(drawWidth - canvas.width) / 2;
   } else {
     // Image is taller → also fit width, crop height
     drawWidth = canvas.width;
