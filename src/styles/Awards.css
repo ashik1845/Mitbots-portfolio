@@ -32,7 +32,7 @@
   border-radius: 1rem;
 }
 
-/* Default right side: No scroll, show 4 items */
+
 .awards-right {
   display: flex;
   flex-direction: column;
@@ -41,7 +41,7 @@
   position: relative;
 }
 
-/* Add scroll behavior only when showAll is true */
+
 .awards-right.scroll-enabled {
   max-height: 700px;
   overflow-y: auto;
@@ -104,7 +104,7 @@
   transform: translateX(5px);
 }
 
-/* Timeline */
+
 .timeline-line {
   display: flex;
   flex-direction: column;
@@ -142,71 +142,70 @@
 }
 @media(max-width:1260px){
    .award-heading {
-    font-size: 1.3rem; /* 24px */
+    font-size: 1.3rem; 
   }
 }
 
-/* ↓ For screen widths 1200px and below */
 @media (max-width: 1200px) {
   .awards-title {
-    font-size: 3.55rem; /* ~60px */
+    font-size: 3.55rem;
   }
 
   .award-heading {
-    font-size: 1.3rem; /* 24px */
+    font-size: 1.3rem; 
   }
 
   .award-desc {
-    font-size: 1.0625rem; /* 17px */
+    font-size: 1.0625rem; 
   }
 
   .view-more {
-    font-size: 1.75rem; /* 28px */
+    font-size: 1.75rem; 
   }
 
   .award-logo {
-    width: 10.625rem; /* 170px */
+    width: 10.625rem;
     height: 10.625rem;
   }
 
 
 }
 
-/* ↓ For screen widths 1100px and below */
+
 @media (max-width: 1100px) {
   .awards-title {
-    font-size: 3.3rem; /* ~56px */
+    font-size: 3.3rem; 
   }
 
   .award-heading {
-    font-size: 1.2375rem; /* ~23px */
+    font-size: 1.2375rem;
   }
 
   .award-desc {
-    font-size: 0.9rem; /* 16px */
+    font-size: 0.9rem; 
   }
 
   .view-more {
-    font-size: 1.525rem; /* 26px */
+    font-size: 1.525rem;
   }
 
   .award-logo {
-    width: 10rem; /* 160px */
+    width: 10rem; 
     height: 10rem;
   }
 }
 @media (max-width:1050px){
   .award-heading {
-    font-size: 1.1375rem; /* ~23px */
+    font-size: 1.1375rem; 
   }
     .award-logo {
-    width: 8rem; /* 160px */
+    width: 8rem; 
     height: 8rem;
   }
 
 }
 
-/* Medium devices (tablets, 992px and below) */
+
 @media (max-width: 992px) {
 .awards-left img {
   width: 60%;
@@ -223,7 +222,7 @@
   }
 
   .awards-title {
-    font-size: 3rem; /* ~48px */
+    font-size: 3rem; 
     margin-bottom: 40px;
   }
 
@@ -250,11 +249,11 @@
   }
 
   .award-heading {
-    font-size: 1.275rem; /* ~22px */
+    font-size: 1.275rem; 
   }
 
   .award-desc {
-    font-size: 0.8rem; /* 16px */
+    font-size: 0.8rem;
   }
 
   .view-more {
@@ -273,19 +272,18 @@
 
 @media (max-width:875px){
     .award-heading {
-    font-size: 1.175rem; /* ~22px */
+    font-size: 1.175rem; 
   }
 
   .award-desc {
-    font-size: 0.75rem; /* 16px */
+    font-size: 0.75rem; 
   }
 
 }
 
-/* Small devices (phones, 768px and below) */
 @media (max-width: 768px) {
   .awards-title {
-    font-size: 2.5rem; /* ~40px */
+    font-size: 2.5rem;
   }
 
   .award-item {
@@ -312,22 +310,21 @@
   }
 
     .award-heading {
-    font-size: 1.075rem; /* ~22px */
+    font-size: 1.075rem; 
   }
 
   .award-desc {
-    font-size: 0.75rem; /* 16px */
+    font-size: 0.75rem;
   }
 
 }
 
-/* Extra small devices (phones, 480px and below) */
 @media (max-width: 480px) {
    .award-desc {
     display: none;
   }
   .awards-title {
-    font-size: 2rem; /* ~32px */
+    font-size: 2rem; 
     margin-bottom: 30px;
   }
 
@@ -368,13 +365,13 @@
 
 @media (max-width:400px){
     .award-heading {
-    font-size: 0.9rem; /* ~22px */
+    font-size: 0.9rem; 
   }
 
 
 }
 
-/* Grid layout for awards right section below 992px */
+
 @media (max-width: 992px) {
   .awards-right {
     display: grid;
@@ -385,9 +382,9 @@
   }
 
   .awards-right.scroll-enabled {
-    max-height: 400px; /* Adjust height as needed */
+    max-height: 400px; 
     overflow-y: auto;
-    padding-right: 6px; /* for scroll gutter */
+    padding-right: 6px; 
   }
 
   .award-item {

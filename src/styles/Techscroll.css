@@ -10,7 +10,6 @@
   overflow: hidden;
 }
 
-/* Responsive heading */
 .toolbox-title {
   font-family: 'Montserrat', sans-serif;
   font-size: clamp(32px, 6vw, 60px);
@@ -25,7 +24,6 @@
   
 }
 
-/* Shared marquee container */
 .marquee-container {
   position: absolute;
   height: 120px;
@@ -34,21 +32,21 @@
   overflow: hidden;
 }
 
-/* Line 1 scroll - right to center */
+
 .right-half {
   top: 50px;
   right: 0;
   width: 55vw;
 }
 
-/* Line 2 scroll - left to center */
+
 .left-half {
   bottom: 100px;
   left: 0;
   width: 65vw;
 }
 
-/* Tech item style */
+
 .tech-item {
   display: flex;
   flex-direction: column;
@@ -66,7 +64,7 @@
   margin-bottom: 10px;
 }
 
-/* Fading overlays centered */
+
 .fade-right-center,
 .fade-left-center {
   position: absolute;
@@ -85,7 +83,7 @@
   background: linear-gradient(to left, #F1DABF 0%, transparent 20%);
 }
 
-/* Mobile optimization */
+
 @media (max-width: 768px) {
   .tech-section {
     height: auto;
@@ -112,7 +110,7 @@
 
   .fade-right-center,
   .fade-left-center {
-    display: none; /* Optional: remove fade on small screens for clarity */
+    display: none;
   }
 }
 

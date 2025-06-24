@@ -21,7 +21,7 @@ useEffect(() => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: sectionRef.current,
-        start: isMobile ? "center center" : "center center", // 👈 responsive logic
+        start: isMobile ? "center center" : "center center", 
         end: "+=200%",
         scrub: true,
         pin: true,

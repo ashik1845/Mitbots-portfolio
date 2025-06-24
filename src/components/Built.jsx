@@ -8,7 +8,7 @@ const Built = () => {
       <h1 className="built-main-header">THINGS I’VE BUILT</h1>
 
 
-      {/* MITBOTS */}
+      
 <div className="built-row">
   <div className="built-text built-left">
     <h2 className="built-title mitbots-title">MITBOTS</h2>
@@ -21,7 +21,7 @@ const Built = () => {
   </div>
 </div>
 
-{/* INNOCOM */}
+
 <div className="built-row built-reverse">
   <div className="built-text built-right">
     <h2 className="built-title innocom-title">INNOCOM</h2>
@@ -34,7 +34,7 @@ const Built = () => {
   </div>
 </div>
 
-{/* QUETOR */}
+
 <div className="built-row">
   <div className="built-text built-left">
     <h2 className="built-title quetor-title">Quetor</h2>

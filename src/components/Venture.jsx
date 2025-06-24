@@ -11,12 +11,12 @@ const Venture = () => {
   const sectionRef = useRef(null);
 
   useEffect(() => {
-    if (window.innerWidth <= 768) return; // 🔒 Skip GSAP on mobile
+    if (window.innerWidth <= 768) return; 
 
     const section = sectionRef.current;
     const items = section.querySelectorAll(".stack-item");
 
-    // Initial stack setup
+    
     items.forEach((item, index) => {
       gsap.set(item, {
         yPercent: index === 0 ? 0 : 100,

@@ -12,7 +12,7 @@ const Banner = () => {
   const sectionRef = useRef(null);
   const isMobile = window.innerWidth <= 768;
 
-  const [loading, setLoading] = useState(isMobile); // ✅ true only for mobile
+  const [loading, setLoading] = useState(isMobile);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -24,11 +24,10 @@ const Banner = () => {
   const context = canvas.getContext("2d");
 
   canvas.width = window.innerWidth;
-  canvas.height = document.documentElement.clientHeight; // OR:
+  canvas.height = document.documentElement.clientHeight; 
 
 
 
-  // GPU acceleration hint
   canvas.style.willChange = "transform, opacity";
 
   const images = [];
@@ -65,13 +64,13 @@ const Banner = () => {
   let drawWidth, drawHeight, offsetX = 0, offsetY = 0;
 
   if (imageAspect > canvasAspect) {
-    // Image is wider → fit width, crop height
+    
     drawWidth = canvas.width;
     drawHeight = drawWidth / imageAspect;
     offsetY = 0;
 
   } else {
-    // Image is taller → also fit width, crop height
+    
     drawWidth = canvas.width;
     drawHeight = drawWidth / imageAspect;
     offsetY = 0;
@@ -96,7 +95,7 @@ const Banner = () => {
   });
 
   const animate = () => {
-    currentFrame += (targetFrame - currentFrame) * 0.12; // ✅ Smaller = smoother
+    currentFrame += (targetFrame - currentFrame) * 0.12; 
     const rounded = Math.round(currentFrame);
     render(rounded);
     requestAnimationFrame(animate);

@@ -63,7 +63,6 @@
   background-position: left;
 }
 
-/* Specific image backgrounds */
 .mitbots-image {
   background-image: url('../assets/mitbots.png');
 }
@@ -76,7 +75,6 @@
   background-image: url('../assets/quetor.png');
 }
 
-/* Text Styling */
 .mitbots-title,
 .innocom-title,
 .quetor-title {
@@ -114,9 +112,7 @@
 .quetor-role { color: #D8D8D8; }
 .quetor-description { color: #FFFFFF; }
 
-/* ---------- Responsive ---------- */
 
-/* Tablet (up to 1024px): Only scale fonts, keep layout intact */
 @media (max-width: 1024px) {
   .built-main-header {
     font-size: 48px;
@@ -152,7 +148,6 @@
   }
 }
 
-/* Mobile (below 768px): Switch to column layout */
 @media (max-width: 768px) {
   .built-row,
   .built-reverse {

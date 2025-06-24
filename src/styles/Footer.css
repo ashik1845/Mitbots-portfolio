@@ -79,7 +79,6 @@
   color: #ffffff;
 }
 
-/* 🔽 Responsive Tweaks */
 @media (max-width: 768px) {
   .footer-heading {
     font-size: 2rem;

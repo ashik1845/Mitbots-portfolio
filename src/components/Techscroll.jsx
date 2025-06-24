@@ -53,18 +53,18 @@ useEffect(() => {
     setSpeed(screenWidth <= 480 ? 40 : 70);
   };
 
-  updateSpeed(); // Set initial speed
+  updateSpeed();
 
-  window.addEventListener("resize", updateSpeed); // Update on resize
+  window.addEventListener("resize", updateSpeed);
 
-  return () => window.removeEventListener("resize", updateSpeed); // Cleanup
+  return () => window.removeEventListener("resize", updateSpeed);
 }, []);
 
   return (
     <section className="tech-section bg-light">
       <h1 className="toolbox-title">MY TOOLBOX</h1>
 
-      {/* Line 1: Right End to Center */}
+     
       <div className="marquee-container right-half">
         <Marquee
           direction="left"
@@ -81,7 +81,7 @@ useEffect(() => {
         <div className="fade-right-center" />
       </div>
 
-      {/* Line 2: Left End to Center */}
+      
       <div className="marquee-container left-half">
         <Marquee
           direction="right"

@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 import logo from "../assets/achievement-logo.png";
 
-// Award images (ensure correct paths)
+
 import img1 from "../assets/award1.png";
 import img2 from "../assets/award2.png";
 import img3 from "../assets/award3.png";
@@ -66,7 +66,7 @@ const awardsList = [
 const Awards = () => {
   const [showAll, setShowAll] = useState(false);
   const [hideViewMore, setHideViewMore] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(0); // default image
+  const [selectedIndex, setSelectedIndex] = useState(0); 
 
   const [initialCount, setInitialCount] = useState(3);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -75,7 +75,7 @@ const Awards = () => {
 useEffect(() => {
   let raf1 = requestAnimationFrame(() => {
     let raf2 = requestAnimationFrame(() => {
-      ScrollTrigger.refresh(true); // 🔁 full refresh
+      ScrollTrigger.refresh(true);
     });
   });
 
@@ -127,7 +127,7 @@ useEffect(() => {
   alt="Awards"
   className="award-main-img"
   onLoad={() => {
-    // Refresh only after image loads completely
+    
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         ScrollTrigger.refresh(true);
@@ -170,7 +170,7 @@ onClick={() => isMobile && setSelectedIndex(index)}
   className="view-more"
   onClick={() => {
     setShowAll(true);
-    setTimeout(() => ScrollTrigger.refresh(), 300); // slight delay to wait for DOM reflow
+    setTimeout(() => ScrollTrigger.refresh(), 300); 
   }}
 >
   View More →

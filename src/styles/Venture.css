@@ -7,7 +7,7 @@
 
 .stack-wrapper {
   position: relative;
-  height: 100vh; /* Let GSAP handle the pin scroll */
+  height: 100vh; 
 }
 
 .stack-item {
@@ -21,9 +21,6 @@
   will-change: transform;
 }
 
-/* .venture-section and .life-section styles remain the same */
-
-
 
 .stack-item {
   position: absolute;
@@ -32,11 +29,11 @@
   height: 100%;
   padding: 100px 80px;
   box-sizing: border-box;
-  opacity: 0; /* prevent flash on load */
+  opacity: 0;
   will-change: transform, opacity;
 }
 
-/* Venture Section */
+
 .venture-section {
   
   background-color: #69391e;
@@ -88,7 +85,7 @@
   line-height: 1.6;
   padding-left: 40px;
 }
-/* Life Section */
+
 .life-section {
   background-color: #f1dabf;
   display: flex;
@@ -218,7 +215,7 @@
     padding: 80px 30px;
   }
 
-  /* NEW: column layout for smaller screens */
+  
   .venture-main,
   .life-content {
     flex-direction: column;
@@ -259,7 +256,7 @@
     padding: 80px 30px;
   }
 
-  /* NEW: column layout for smaller screens */
+  
   .venture-main,
   .life-content {
     flex-direction: column;
