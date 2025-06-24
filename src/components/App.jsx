@@ -7,14 +7,14 @@ import Footer from './Footer'
 import Reach from './Reach'
 import TechScroll from './Techscroll'
 import Venture from './Venture'
-import CustomCursor from './CustomCursor'
+
 
 
 function App() {
 
   return (
     <>
-    <CustomCursor/>
+    
       <Banner/>
       <About/>
       <Built/>
